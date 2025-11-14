@@ -1,0 +1,29 @@
+/* @media all = style ini akan aktif di SEMUA jenis media (layar, print, dll) */
+@media all {
+  .container {
+    display: grid; /* Mengubah container menjadi grid layout */
+    column-gap: 10px; /* Jarak antar kolom 10px */
+    row-gap: 10px; /* Jarak antar baris 10px */
+  }
+  .content {
+    background-color: aqua; /* Set warna background masing-masing kotak menjadi aqua */
+  }
+}
+/* ⚠ Bagian ini ada sedikit kesalahan logika, karena max-width 10px dan 500px digabung AND,
+   artinya layar harus kurang dari 10px dan 500px sekaligus → hampir tidak mungkin terjadi */
+@media screen and (max-width: 10px) and (max-width: 500px) {
+  .container {
+    grid-template-columns: repeat(1, 1fr);
+    /* Jika layar sangat kecil, tampilkan 1 kolom penuh */
+  }
+}
+
+/* Jika layar berukuran 501px ke atas, maka grid menjadi 4 kolom */
+@media screen and (min-width: 501px) {
+  .container {
+    grid-template-columns: repeat(4, 1fr);
+    /* repeat(4, 1fr) artinya:
+       - 4 kolom
+       - masing-masing lebarnya 1 fraksi (sama rata) */
+  }
+}
